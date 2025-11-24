@@ -1,0 +1,509 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+          rel="stylesheet">
+
+    <title>Gym Management System</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-training-studio.css' %}">
+</head>
+
+<body>
+
+<div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid position-relative nav-bar p-0">
+    <div class="position-relative px-lg-7" style="z-index: 9;">
+        <nav class="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-3 pl-3 pl-lg-5 fixed-top">
+            <a href="{% url 'index' %}">
+                <h2 class="text-uppercase mb-1" style="font-weight: 800;">
+                    <span style="color: #fff;">BRIJESH'S</span> <span style="color: #ed563b;">FITNESS</span>
+                </h2>
+            </a>
+
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="{% url 'index' %}" class="nav-item nav-link active">Home</a>
+                    <a href="#features" class="nav-item nav-link">About</a>
+                    <a href="#our-classes" class="nav-item nav-link">Classes</a>
+                    <a href="#trainers" class="nav-item nav-link">Pricing Plan</a>
+                    <a href="#contact-us" class="nav-item nav-link">Contact</a>
+
+
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'user_profile' %}" class="nav-item nav-link">
+                            <i style="color:red" class="fa fa-user mr-2"></i> My Profile
+                        </a>
+                        <a href="{% url 'user_change_password' %}" class="nav-item nav-link">
+                            <i style="color:red" class="fa fa-unlock-alt mr-2"></i> Change Password
+                        </a>
+                        <a href="{% url 'user_logout' %}" class="nav-item nav-link">
+                            <i style="color:red" class="fa fa-sign-out mr-2"></i> Logout
+                        </a>
+                        <a href="{% url 'booking_history' %}" class="nav-item nav-link">Booking History</a>
+                    {% else %}
+                        <a href="#admin" class="nav-item nav-link admin-btn">Admin</a>
+                        <a href="{% url 'user_login' %}" class="nav-item nav-link">User Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<style>
+    .navbar-nav .nav-link {
+        color: #dcdcdc; /* default text color */
+        transition: color 0.3s ease, background-color 0.3s ease;
+        padding: 8px 15px;
+        border-radius: 5px;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #fff;
+        background-color: #8eaac2; /* red hover */
+    }
+
+    .navbar-nav .nav-link.active {
+        color: #ffc107 !important; /* gold/yellow for active */
+        font-weight: bold;
+    }
+
+
+</style>
+<!--Become a member-->
+<div class="main-banner" id="top">
+<img src="{% static 'assets/images/gym123.jpeg' %}" id="bg-video">
+
+    <div class="video-overlay header-text">
+        <div class="caption">
+            <h6>work harder, get stronger</h6>
+            <h2>easy with our <em>gym</em></h2>
+            <div class="main-button scroll-to-section">
+                <a href="{% url 'registration' %}">Become a member</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Become a member-->
+
+
+<!--Choose Program start  -->
+
+<section class="section" id="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading">
+                    <h2>Choose <em>Program</em></h2>
+                    <img src="{% static 'assets/images/line-dec.png' %}" alt="waves">
+                    <p>Explore our curated fitness programs designed for Indian lifestyles. From yoga to strength training, we’ve got you covered.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <ul class="features-items">
+                    <li class="feature-item">
+                        <div class="left-icon">
+                            <img src="{% static 'assets/images/features-first-icon.png' %}" alt="Basic Fitness">
+                        </div>
+                        <div class="right-content">
+                            <h4>Basic Fitness</h4>
+                            <p>Perfect for beginners looking to improve stamina, flexibility, and overall health with guided routines.</p>
+                            <a href="#" class="text-button">Discover More</a>
+                        </div>
+                    </li>
+
+                    <li class="feature-item">
+                        <div class="left-icon">
+                            <img src="{% static 'assets/images/features-first-icon.png' %}" alt="Strength Training">
+                        </div>
+                        <div class="right-content">
+                            <h4>Strength & Conditioning</h4>
+                            <p>Build lean muscle and boost endurance with our structured training led by certified Indian coaches.</p>
+                            <a href="#" class="text-button">Discover More</a>
+                        </div>
+                    </li>
+
+                    <li class="feature-item">
+                        <div class="left-icon">
+                            <img src="{% static 'assets/images/features-first-icon.png' %}" alt="Bollywood Dance">
+                        </div>
+                        <div class="right-content">
+                            <h4>Bollywood Dance Fitness</h4>
+                            <p>Get fit while grooving to energetic Bollywood beats. A fun cardio workout for all age groups.</p>
+                            <a href="#" class="text-button">Discover More</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-6">
+                <ul class="features-items">
+                    <li class="feature-item">
+                        <div class="left-icon">
+                            <img src="{% static 'assets/images/features-first-icon.png' %}" alt="Yoga Training">
+                        </div>
+                        <div class="right-content">
+                            <h4>Yoga & Meditation</h4>
+                            <p>Traditional Indian yoga sessions focused on posture, breath control, and mental clarity for holistic wellness.</p>
+                            <a href="#" class="text-button">Discover More</a>
+                        </div>
+                    </li>
+
+                    <li class="feature-item">
+                        <div class="left-icon">
+                            <img src="{% static 'assets/images/features-first-icon.png' %}" alt="Surya Namaskar">
+                        </div>
+                        <div class="right-content">
+                            <h4>Surya Namaskar Challenge</h4>
+                            <p>Master the 12-step sun salutation sequence to improve flexibility, digestion, and mental focus.</p>
+                            <a href="#" class="text-button">Discover More</a>
+                        </div>
+                    </li>
+
+                    <li class="feature-item">
+                        <div class="left-icon">
+                            <img src="{% static 'assets/images/features-first-icon.png' %}" alt="Body Building">
+                        </div>
+                        <div class="right-content">
+                            <h4>Body Building Program</h4>
+                            <p>Advanced training for serious lifters. Personalized plans, nutrition guidance, and expert coaching included.</p>
+                            <a href="#" class="text-button">Discover More</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Choose Program end -->
+
+<!--top waiting, start training! start    -->
+
+
+<section class="section" id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="cta-content">
+                    <h2>Stop <em>waiting</em>, start <em>training</em>!</h2>
+                    <p>Your health is your true wealth. Join our fitness family and begin your transformation today. Whether it's yoga, strength, or dance — we have the right path for you.</p>
+                    <div class="main-button scroll-to-section">
+                        <a href="#our-classes">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--top waiting, start training! end   -->
+
+<!--Our Classes start  -->
+<section class="section" id="our-classes">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading">
+                    <h2>Our <em>Classes</em></h2>
+                    <img src="{% static 'assets/images/line-dec.png' %}" alt="">
+                    <p>Explore our diverse fitness programs designed for Indian lifestyles. Whether you're into yoga, strength, or dance — we have something for everyone.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="tabs">
+            <div class="col-lg-4">
+                <ul>
+                    <li><a href="#tabs-1"><img src="{% static 'assets/images/tabs-first-icon.png' %}" alt=""> Yoga & Meditation</a></li>
+                    <li><a href="#tabs-2"><img src="{% static 'assets/images/tabs-first-icon.png' %}" alt=""> Strength Training</a></li>
+                    <li style="white-space: nowrap;"><a href="#tabs-3"><img src="{% static 'assets/images/tabs-first-icon.png' %}" alt=""> Bollywood Dance Fitness</a></li>
+                    <li><a href="#tabs-4"><img src="{% static 'assets/images/tabs-first-icon.png' %}" alt=""> Body Building</a></li>
+                </ul>
+                <div class="main-rounded-button mt-3">
+                    <a href="#schedule">View All Schedules</a> </div>
+            </div>
+
+            <div class="col-lg-8">
+                <section class="tabs-content">
+                    <article id="tabs-1">
+                        <img src="{% static 'assets/images/training-image-06.jpg' %}" alt="Yoga Class">
+                        <h4>Yoga & Meditation</h4>
+                        <p>Experience traditional Indian yoga practices focused on posture, breath control, and mindfulness. Ideal for stress relief and holistic wellness.</p>
+                        <div class="main-button">
+                            <a href="#schedule">View Schedule</a> </div>
+                    </article>
+
+                    <article id="tabs-2">
+                        <img src="{% static 'assets/images/training-image-01.jpg' %}" alt="Strength Training">
+                        <h4>Strength Training</h4>
+                        <p>Build lean muscle and improve endurance with guided strength workouts using weights, resistance bands, and bodyweight techniques.</p>
+                        <div class="main-button">
+                            <a href="#schedule">View Schedule</a> </div>
+                    </article>
+
+                    <article id="tabs-3">
+                        <img src="{% static 'assets/images/training-image-09.jpg' %}" alt="Bollywood Dance Fitness">
+                        <h4 style="white-space: nowrap;">Bollywood Dance Fitness</h4>
+                        <p>Get fit while dancing to energetic Bollywood music. A fun cardio workout that blends rhythm, movement, and joy — perfect for all ages.</p>
+                        <div class="main-button">
+                            <a href="#schedule">View Schedule</a> </div>
+                    </article>
+
+                    <article id="tabs-4">
+                        <img src="{% static 'assets/images/training-image-08.jpg' %}" alt="Body Building">
+                        <h4>Body Building</h4>
+                        <p>Advanced training for serious lifters. Includes personalized workout plans, nutrition guidance, and expert coaching to help you bulk up safely.</p>
+                        <div class="main-button">
+                            <a href="#schedule">View Schedule</a> </div>
+                    </article>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Our Classes end  -->
+
+<!--Classes Schedule started -->
+
+<section class="section" id="schedule">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading dark-bg">
+                    <h2>Classes <em>Schedule</em></h2>
+                    <img src="{% static 'assets/images/line-dec.png' %}" alt="">
+                    <p>Join our expert-led fitness sessions throughout the week. Stay active, stay healthy!</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="filters">
+                    <ul class="schedule-filter">
+                        <li class="active" data-tsfilter="monday">Monday</li>
+                        <li data-tsfilter="tuesday">Tuesday</li>
+                        <li data-tsfilter="wednesday">Wednesday</li>
+                        <li data-tsfilter="thursday">Thursday</li>
+                        <li data-tsfilter="friday">Friday</li>
+                        <li data-tsfilter="saturday">Saturday</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-10 offset-lg-1">
+                <div class="schedule-table filtering">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td class="day-time">Fitness Class</td>
+                            <td class="monday ts-item show" data-tsmeta="monday">7:00AM - 8:30AM</td>
+                            <td class="tuesday ts-item" data-tsmeta="tuesday">6:00PM - 7:30PM</td>
+                            <td>Bhargav Gol</td>
+                        </tr>
+                        <tr>
+                            <td class="day-time">Muscle Training</td>
+                            <td class="wednesday ts-item" data-tsmeta="wednesday">7:00AM - 8:30AM</td>
+                            <td class="friday ts-item" data-tsmeta="friday">6:00PM - 7:30PM</td>
+                            <td>Mali Vishal</td>
+                        </tr>
+                        <tr>
+                            <td class="day-time">Body Building</td>
+                            <td class="tuesday ts-item" data-tsmeta="tuesday">7:00AM - 8:30AM</td>
+                            <td class="thursday ts-item" data-tsmeta="thursday">6:00PM - 7:30PM</td>
+                            <td>Patel Regan</td>
+                        </tr>
+                        <tr>
+                            <td class="day-time">Yoga Training Class</td>
+                            <td class="wednesday ts-item" data-tsmeta="wednesday">6:30AM - 8:00AM</td>
+                            <td class="saturday ts-item" data-tsmeta="saturday">5:00PM - 6:30PM</td>
+                            <td>Mali Brijesh</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Classes Schedule end -->
+<!-- ***** Testimonials Starts ***** -->
+<section class="section" id="trainers">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="section-heading">
+                    <h2>Pricing <em>Plans</em></h2>
+                    <img src="{% static 'assets/images/line-dec.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="row" >
+            {% for i in package %}
+            <div class="col-lg-4"><br>
+                <div class="trainer-item">
+                    <div class="down-content">
+                        <span>{{i.titlename}}</span>
+                        <h4>{{i.price}}</h4>
+                        <h4>{{i.packageduration}}</h4>
+                        <p>{{i.description|safe}}</p>
+                        <a class="btn btn-danger px-3" href="/apply-booking/{{i.id}}/">Booking Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- ***** Testimonials Ends ***** -->
+{% block body %}
+
+
+{% endblock %}
+<!--admin  start-->
+
+<section class="section" id="admin" style="margin-top:10px;">
+    <div class="container-fluid mt-3">
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="section-heading text-center">
+                <h2>Admin <em>Login</em></h2>
+                <img src="{% static 'assets/images/line-dec.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div id="map">
+                    <img src="{% static 'assets/images/adminlogin.jpg' %}" style="width: 100%; height: 349px;">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="admin-form">
+                    <form method="post" action="{% url 'index' %}" enctype="multipart/form-data"> 
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <fieldset>
+                                    <input type="text" name="uname" placeholder="Enter Username" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <fieldset>
+                                    <input type="password" name="pwd" placeholder="Enter Password" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                                <fieldset>
+                                    <button type="submit" class="main-button">Submit</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--admin end -->
+
+<!--contact us  start-->
+
+<!-- ***** Contact Us Area Starts ***** -->
+
+<section class="section" id="contact-us">
+
+  <div class="section-heading text-center">
+
+    <h2>Contact <em>US</em></h2>
+    <img src="{% static 'assets/images/line-dec.png' %}" alt="">
+
+
+  </div>
+
+<div class="contact-form" style="text-align:center; background-color:#f8f9fa; padding:20px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+
+    <!-- Heading -->
+    <h2 class="gym-heading" style="color:#ffffff; font-weight:bold;">
+        BRIJESH'S <span style="color:#ed563b;">FITNESS</span>
+    </h2>
+
+    <!-- Contact Info -->
+    <ul style="list-style:none; padding:0; margin:15px 0; text-align:center; font-size:16px; color:#ed563b;">
+        <li style="margin-bottom:10px; color:#ffffff;">
+            📍 <strong>Corporate Address:</strong> Near City Bus Stand, Deesa, Gujarat, India
+        </li>
+        <li style="margin-bottom:10px; color:#ed563b;">
+            📞 <strong>Client Support:</strong> +91 91573 1XXXX
+        </li>
+        <li style="margin-bottom:10px; color:#ffffff;">
+            ✉️ <strong>Official Email:</strong> malivishal28711@gmail.com
+        </li>
+    </ul>
+
+    <!-- Commitment Message -->
+    <p style="margin-top:15px; font-size:15px; color:#ed563b;">
+      — <strong style="color:#ffffff;">Commitment to Excellence</strong> —
+      <br>
+      <span style="color:#ed563b">
+        "Our team is dedicated to supporting your fitness journey. For inquiries regarding memberships, partnerships, or support, please connect with us directly. We value your commitment to wellness."
+      </span>
+    </p>
+
+</div>
+
+<!--contact - us end -->
+
+<!--Footer start-->
+<footer class="text-center">
+    <div class="section-heading" style="margin:0; padding:0;">
+        <h2 style="margin:0; font-weight:bold; color:#ed563b;">
+            © <em style="color:#343a40;">Developed by Vishal </em> {% now "Y" %}
+        </h2>
+    </div>
+</footer>
+<!--Footer end-->
+
+
+<script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/popper.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+<script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'assets/js/imgfix.min.js' %}"></script>
+<script src="{% static 'assets/js/mixitup.js' %}"></script>
+<script src="{% static 'assets/js/accordions.js' %}"></script>
+
+<script src="{% static 'assets/js/custom.js' %}"></script>
+{% for i in messages %}
+<script>
+alert('{{i}}');
+</script>
+{% endfor %}
+</body>
+</html>

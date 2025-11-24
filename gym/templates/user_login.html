@@ -1,0 +1,170 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+          rel="stylesheet">
+
+    <title>Gym Management System - User Login</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-training-studio.css' %}">
+
+    <style>
+        body { padding-top: 100px; } /* Adjust height based on your navbar size */
+        .navbar-nav .nav-link {
+            color: #dcdcdc; /* default text color */
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #fff;
+            background-color: #8eaac2; /* red hover */
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #ffc107 !important; /* gold/yellow for active */
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+<div class="container-fluid position-relative nav-bar p-0">
+    <div class="position-relative px-lg-7" style="z-index: 9;">
+        <nav class="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-3 pl-3 pl-lg-5 fixed-top">
+            <a href="{% url 'index' %}">
+                <h2 class="text-uppercase mb-1" style="font-weight: 800;">
+                    <span style="color: #fff;">BRIJESH'S</span> <span style="color: #ed563b;">FITNESS</span>
+                </h2>
+            </a>
+
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="{% url 'index' %}" class="nav-item nav-link">Home</a>
+                    <a href="{% url 'index' %}#features" class="nav-item nav-link">About</a>
+                    <a href="{% url 'index' %}#our-classes" class="nav-item nav-link">Classes</a>
+                    <a href="{% url 'index' %}#trainers" class="nav-item nav-link">Pricing Plan</a>
+                    <a href="{% url 'index' %}#contact-us" class="nav-item nav-link">Contact</a>
+
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'user_profile' %}" class="nav-item nav-link">
+                            <i style="color:red" class="fa fa-user mr-2"></i> My Profile
+                        </a>
+                        <a href="{% url 'user_logout' %}" class="nav-item nav-link">
+                            <i style="color:red" class="fa fa-sign-out mr-2"></i> Logout
+                        </a>
+                    {% else %}
+                        <a href="{% url 'index' %}#admin" class="nav-item nav-link admin-btn">Admin</a>
+                        <a href="{% url 'user_login' %}" class="nav-item nav-link active">User Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+     <div style="text-align: center;">
+        <section class="section" id="admin" style="margin-top: 9px;">
+    <h2 class="text-uppercase mb-1" style="font-weight: 800;">
+                    <span style="color: #000000;">user</span> <span style="color: #ed563b;">Login</span></h2>
+                        <div style="text-align: center;">
+    <img src="{% static 'assets/images/line-dec.png' %}" alt="" style="margin-bottom: 10px;">
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div id="map">
+                    <img src="{% static 'assets/images/adminlogin.jpg' %}" style="width: 100%; height: 349.5px;">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12">
+                <div class="admin-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <fieldset>
+                                    <input type="text" name="email" placeholder="Enter Email (Username)" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <fieldset>
+                                    <input type="password" name="password" placeholder="Enter Password" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                                <fieldset>
+                                    <button type="submit" class="main-button">Login</button>
+                                    <a href="{% url 'registration' %}" class="pull-right text-white">Registration</a>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Success / Error Messages -->
+<div class="container mt-3">
+    {% if error == "no" %}
+        <div class="alert alert-success text-center fw-bold" role="alert">
+            ✅ Logged In Successfully
+        </div>
+        <!-- Redirect after success -->
+        <meta http-equiv="refresh" content="2;url={% url 'admin_home' %}">
+    {% endif %}
+
+    {% if error == "yes" %}
+        <div class="alert alert-danger text-center fw-bold" role="alert">
+            ❌ Invalid Credentials, Please try again
+        </div>
+    {% endif %}
+</div>
+
+
+<!-- ***** Footer Start ***** -->
+<footer class="text-center">
+    <div class="section-heading" style="margin:0; padding:0;">
+        <h2 style="margin:0; font-weight:bold; color:#ed563b;">
+            © <em style="color:#343a40;">Developed by Vishal </em> {% now "Y" %}
+        </h2>
+    </div>
+</footer>
+<!--Footer end-->
+<script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+<script src="{% static 'assets/js/popper.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+<script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'assets/js/imgfix.min.js' %}"></script>
+<script src="{% static 'assets/js/mixitup.js' %}"></script>
+<script src="{% static 'assets/js/accordions.js' %}"></script>
+
+<script src="{% static 'assets/js/custom.js' %}"></script>
+
+</body>
+</html>
