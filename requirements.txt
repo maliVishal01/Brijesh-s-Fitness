@@ -1,4 +1,4 @@
-
-
-# Run the command correctly (this extracts the actual packages)
-pip3 freeze > requirements.txt
+asgiref
+Django
+sqlparse
+tzdata
