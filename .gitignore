@@ -1,7 +1,15 @@
-db.sqlite3
-.idea/
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# Django
+db.sqlite3
 .env
-static/
-media/	
+
+# Docker
+*.log
+
+# OS
+.DS_Store
