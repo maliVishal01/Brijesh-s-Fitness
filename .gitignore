@@ -1,15 +1,48 @@
-# Python
+# Python cache files
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
-*.pyd
 
-# Django
-db.sqlite3
-.env
+# Virtual environment folders
+venv/
+env/
+.venv/
+ENV/
 
-# Docker
-*.log
+# IDE/editor settings
+.vscode/
+.idea/
 
-# OS
+# OS generated files
 .DS_Store
+Thumbs.db
+
+# Logs and text files
+*.log
+*.txt
+
+# Databases
+*.sqlite3
+*.db
+
+# Django specific
+/media/
+staticfiles/
+*.pot
+*.mo
+
+# Environment variables
+.env
+*.env
+
+# Migrations (optional, keep if you want history)
+*/migrations/__pycache__/
+*/migrations/*.py
+*/migrations/*.pyc
+
+# Build and distribution
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
