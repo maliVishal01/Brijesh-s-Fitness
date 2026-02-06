@@ -15,7 +15,11 @@ SECRET_KEY = 'ib7jq+u@3&w$flar34(yx%u*lucwj_m--n*6a$^fo(_fh^e&vi'
 DEBUG = False
 ALLOWED_HOSTS = ['*']
 
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Application definition
 
@@ -107,8 +111,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-MEDIA_URL='/media/'
-MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
